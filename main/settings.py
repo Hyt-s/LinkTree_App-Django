@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     #third party apps
     'rest_framework',
+    'corsheaders',
 
     #my apps
     'app',
@@ -50,6 +51,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -149,6 +152,13 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:3000',
+  'https://link-trees-app.herokuapp.com'
+  'http://link-trees-app.herokuapp.com'
+)
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
